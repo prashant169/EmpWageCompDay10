@@ -3,23 +3,19 @@ package com.employeewage;
 import java.util.Random;
 
 public class EmpWageComp {
-
 	public static final int FullDayHour = 8;
 	public static final int WorkingDayMonth = 20;
 	public static final int maxHoursInMonth = 100;
 	public static final int perHour = 20;
 
-	public static void main(String x[]) {
+	public static void main(String[] args) {
 
-		MonthlyWages();
+		computeEmpWage();
 	}
 
-	static void MonthlyWages() {
-		int fullTimeDays = 0;
-		int partTimeDays = 0;
-		int totalempHour = 0;
-		int totalWorkingDay = 0;
-		int absent = 0;
+	public static void computeEmpWage() {
+
+		int fullTimeDays = 0, partTimeDays = 0, totalempHour = 0, totalWorkingDay = 0, absent = 0;
 
 		while (maxHoursInMonth > totalempHour && WorkingDayMonth > totalWorkingDay) {
 
@@ -58,7 +54,6 @@ public class EmpWageComp {
 		System.out.println("PartTime_Salary:===> " + PartTimeSalary);
 		System.out.println("Total_Salary   :===> " + (FullTimeSalary + PartTimeSalary));
 		System.out.println("---------------------------------------");
-		System.out.println(totalWorkingDay);
 
 	}
 }
