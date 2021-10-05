@@ -1,28 +1,42 @@
 package com.employeewage;
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class EmpWageComp {
-	public static void main(String args[]) {
-		System.out.println("Welcome To The Employee Wages");
-		CalculateDailyWages();
+	public static void main(String[] args) {
+		System.out.println("Welcome");
+		EmployeeWage();
 	}
 
-	public static void CalculateDailyWages() {
-		int IsFullTime = 1;
-		Random rn = new Random();
-		int check = rn.nextInt(2);
-		int RatePerHour = 20;
+	static void EmployeeWage() {
+		Scanner in = new Scanner(System.in);
 		int PartTimeHour = 4;
-		int TotalWages = 0;
-		if (check == IsFullTime) {
-			System.out.println("Employee Present.");
-			TotalWages = RatePerHour * PartTimeHour;
-			System.out.println("Daily PartTime Wages  : " + TotalWages);
+		int RatePerHour = 20;
+		int FullDayHour = 8;
+		int Day = 0;
+		Random rn = new Random();
+		int rand = rn.nextInt(3);
+		switch (rand) {
+		case 1:
+			System.out.println("IT's Full Time Wages: ");
+			System.out.println("Enter NUmber Of Working Day's: ");
+			Day = in.nextInt();
+			int FullTimeWages = RatePerHour * (FullDayHour * Day);
+			System.out.println("FullTimeWages for " + Day + " Days: " + "Rs." + FullTimeWages);
+			break;
 
-		} else {
-			System.out.println("Employee Absent.");
+		case 2:
+			System.out.println("IT's Part Time Wages: ");
+			System.out.println("Enter Number Of Working Day's: ");
+			Day = in.nextInt();
+			int PartTimeWages = Day * PartTimeHour * FullDayHour;
+			System.out.println("PartTimeWages for " + Day + " days: " + "Rs." + PartTimeWages);
+			break;
+		default:
+			System.out.println("Employee is Absent..........!");
+			break;
 		}
+		in.close();
 	}
-
 }
