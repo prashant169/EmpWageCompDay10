@@ -3,35 +3,26 @@ package com.employeewage;
 import java.util.Random;
 
 public class EmpWageComp {
-	
 	public static void main(String args[]) {
-		System.out.println("Welcome To Employee Wage");
-		DailyWages();
-	
-		
+		System.out.println("Welcome To The Employee Wages");
+		CalculateDailyWages();
 	}
-		public static void DailyWages()
-		{
-			int IsFullTime= 1;
-			Random rn = new Random();			
-			int check = rn.nextInt(2);
-			int RatePerHour = 20 ;
-			int FullDayHour = 8 ;
-			int TotalWage = 0 ;
-			if (check == IsFullTime)
-			{
-				System.out.println("Employee is present");
-				TotalWage =RatePerHour * FullDayHour;
-				System.out.println("Daily Wages : "+TotalWage);
-				
-			}
-			else
-			{
-				System.out.println("Employee Absent");
-				
-			}
-			
-		}
-	
-}
 
+	public static void CalculateDailyWages() {
+		int IsFullTime = 1;
+		Random rn = new Random();
+		int check = rn.nextInt(2);
+		int RatePerHour = 20;
+		int PartTimeHour = 4;
+		int TotalWages = 0;
+		if (check == IsFullTime) {
+			System.out.println("Employee Present.");
+			TotalWages = RatePerHour * PartTimeHour;
+			System.out.println("Daily PartTime Wages  : " + TotalWages);
+
+		} else {
+			System.out.println("Employee Absent.");
+		}
+	}
+
+}
