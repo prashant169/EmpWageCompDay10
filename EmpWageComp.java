@@ -1,59 +1,47 @@
 package com.employeewage;
 
-import java.util.Random;
-
 public class EmpWageComp {
-	public static final int FullDayHour = 8;
-	public static final int WorkingDayMonth = 20;
-	public static final int maxHoursInMonth = 100;
-	public static final int perHour = 20;
+	public static final int EMP_RATE_PER_HOUR = 20;
+	public static final int IS_FULL_TIME = 1;
+	public static final int IS_PART_TIME = 2;
+	public static int MAX_WORKING_DAYS = 20;
+	public static final int MAX_WORKING_HRS = 100;
 
 	public static void main(String[] args) {
-
-		computeEmpWage();
+		System.out.println("Welcome to the Employee Wage Computation Program !!");
+		EmpWageComp company1 = new EmpWageComp();
+		EmployeeWageComp("Dmart", 20, 20, 100);
+		EmpWageComp company2 = new EmpWageComp();
+		EmployeeWageComp("Kmart", 22, 20, 70);
+		EmpWageComp company3 = new EmpWageComp();
+		EmployeeWageComp("Bridgelabz", 15, 2, 20);
 	}
 
-	public static void computeEmpWage() {
-
-		int fullTimeDays = 0, partTimeDays = 0, totalempHour = 0, totalWorkingDay = 0, absent = 0;
-
-		while (maxHoursInMonth > totalempHour && WorkingDayMonth > totalWorkingDay) {
-
-			totalWorkingDay++;
-
-			Random rn = new Random();
-			int rand = rn.nextInt(3);
-
-			switch (rand) {
-
-			case 0:
-				fullTimeDays++;
-				totalempHour = totalempHour + FullDayHour;
+	public static int EmployeeWageComp(String company, int empRatePerHr, int numWorkingDays, int maxHrs) {
+		int empHrs = 0, totalEmpHrs = 8, totalWorkingDays = 0;
+		while (totalEmpHrs <= MAX_WORKING_HRS && totalWorkingDays < MAX_WORKING_DAYS) {
+			totalWorkingDays++;
+			int empcheck = (int) (Math.floor(Math.random() * 10) % 3);
+			switch (empcheck) {
+			case 2:
+				System.out.println("Employee is Part time ");
+				empHrs = 4;
 				break;
 			case 1:
-				partTimeDays++;
-				totalempHour = totalempHour + (FullDayHour / 2);
+				System.out.println("Employee is Full time ");
+				empHrs = 8;
 				break;
 			default:
-				absent++;
-				break;
-
+				System.out.println("Employee is Absent");
+				empHrs = 0;
 			}
+			totalEmpHrs += empHrs;
 		}
-		int FullTimeSalary = perHour * (FullDayHour * fullTimeDays);
-		int PartTimeSalary = (partTimeDays * (FullDayHour / 2)) * perHour;
+		int totalEmpWage = totalEmpHrs * EMP_RATE_PER_HOUR;
+		System.out.println(company + " company Total Daily Wage for days " + totalWorkingDays + " and hours "
+				+ totalEmpHrs + " is: " + totalEmpWage);
 
-		System.out.println("------------Employee_Wages-------------");
-		System.out.println("---------------------------------------");
-		System.out.println("FullTime_Days_in_month: " + fullTimeDays);
-		System.out.println("PartTime_Days_in_month: " + partTimeDays);
-		System.out.println("Absent_Days_in_month: " + absent);
-		System.out.println("Total_working_Days_IN_month : " + (fullTimeDays + partTimeDays));
-		System.out.println("Total_Hours    :===> " + totalempHour);
-		System.out.println("FullTime_Salary:===> " + FullTimeSalary);
-		System.out.println("PartTime_Salary:===> " + PartTimeSalary);
-		System.out.println("Total_Salary   :===> " + (FullTimeSalary + PartTimeSalary));
-		System.out.println("---------------------------------------");
-
+		return totalEmpWage;
 	}
 }
+
